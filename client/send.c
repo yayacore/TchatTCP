@@ -11,10 +11,10 @@ void * send_routine(void *arg)
 
    strcpy(colis.name, client.name);
    
-   char buf[255]; 
    
    while(1) {
-
+       
+        char buf[255]; 
         fgets(buf, sizeof(buf), stdin);
 
         buf[strlen(buf)-1] = 0;     // rm \n

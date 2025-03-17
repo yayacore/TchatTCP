@@ -11,7 +11,6 @@ int initSocket(int user_port, int serv_port)
         .sin_family = AF_INET,
         .sin_port = htons(user_port),
         .sin_addr.s_addr = INADDR_ANY
-
     };
     
     int error = bind(user_fd, (struct sockaddr*) &user, sizeof(user)); perror("bind");
