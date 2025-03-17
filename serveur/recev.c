@@ -3,20 +3,22 @@
 #include "global.h"
 
 /*
-recv des clients en boucle
+recv des clients en boucle 
++ traitement des erreurs
 */
 
 void * traitement_rcv(void *arg)
 {
-    printf("RECV ✅\n");
+    //printf("RECV ✅\n");
     
-    t_user client = *((t_user*) arg);   // transtypage void* arg en int
+    // transtypage void* arg en int
+    t_user client = *((t_user*) arg);   
     t_message colis;
     
     while(1) 
     {
 
-        int nb_datas = recv(client.socket_fd, &colis, sizeof(t_message), 0); perror("rcv"); // *fd pour accéder à la valeur pointée
+        int nb_datas = recv(client.socket_fd, &colis, sizeof(t_message), 0); perror("rcv"); 
 
             
         if(nb_datas == -1)
@@ -25,22 +27,21 @@ void * traitement_rcv(void *arg)
             continue;
         }
         
-        if(nb_datas == 0)     // !!!!! pb à fix rcv à l'infini
+        if(nb_datas == 0)
         {
             printf("user gone  :'(\n");
-            nb_datas ++;
-            continue;
+            break;
         }
             
         for(int i = 0; i < next_client_index; i++) 
         {
         
-            printf("SEND ✅\n");
+            //printf("SEND ✅\n");
             send(users[i].socket_fd, &colis, sizeof(t_message), 0); perror("send");
         }
         
         printf("[%s]> %s \n", colis.name, colis.message);
 
-        printf("compteur de clients : %d\n", next_client_index);
+        printf("nombre de clients présents : %d\n", next_client_index);
     }
 }
