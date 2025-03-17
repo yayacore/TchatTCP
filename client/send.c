@@ -2,6 +2,10 @@
 
 #include "global.h"
 
+/*
+envoi au serveur
+*/
+
 void * send_routine(void *arg)
 {
 
@@ -28,7 +32,7 @@ void * send_routine(void *arg)
 
         int error = send(client.fd, &colis, sizeof(t_message), 0); perror("send");
         //printf("%s: %s \n",colis.name, colis.message);
-        if (error == -1) printf("erreur lors de l'envoi au destinataire \n"); 
+        if (error == -1) printf("problème survenu lors de l'envoi \n"); 
         
         memset(buf, 0, 255);
     }
