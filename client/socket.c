@@ -19,7 +19,7 @@ int initSocket(int user_port, int serv_port)
     struct sockaddr_in serv = {
         .sin_family = AF_INET,
         .sin_port = htons(serv_port),
-        .sin_addr.s_addr = inet_addr("127.0.0.1")
+        .sin_addr.s_addr = inet_addr("127.0.0.1")   // adresse localhost
     };
     
     error = connect(user_fd, (struct sockaddr*) &serv, sizeof(serv)); perror("connect");

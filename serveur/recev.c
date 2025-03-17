@@ -25,7 +25,7 @@ void * traitement_rcv(void *arg)
         {
             printf("erreur aucune donnée n'a été récupérée//\n");
             continue;
-        }
+        }       // possibilité de faire un switch pour la déconnexion
         
         if(nb_datas == 0)
         {

@@ -37,5 +37,5 @@ void * send_routine(void *arg)
         memset(buf, 0, 255);
     }
 
-    printf("%s : %s\n", client.name, colis.message);
+
 }
