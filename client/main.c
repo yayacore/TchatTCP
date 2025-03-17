@@ -7,6 +7,7 @@ int main(int argc, char** argv)
     int user_port = atoi(argv[1]);
     int port_serv = atoi(argv[2]);
     client.fd = initSocket(user_port, port_serv);
+    
     char prenom [255]; strcpy(prenom, argv[3]);
     // vérification manque d'argument
     strcpy(client.name, prenom);
@@ -22,13 +23,14 @@ int main(int argc, char** argv)
     printf("################################################\n\n");
     
     printf("Bienvenue %s\n", client.name);
+    
     pthread_t send_thread;
     pthread_create(&send_thread, NULL, send_routine, &client);
 
     pthread_t rcv_thread;
     pthread_create(&rcv_thread, NULL, recv_routine, &client);
 
-
+    // maintient connexion au serveur
     while(1){}
 
 
