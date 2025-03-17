@@ -13,6 +13,6 @@ void * recv_routine(void *arg)
         int error = recv(client.fd, &courrier, sizeof(t_message), 0); perror("recv");
         if(error == -1) printf("erreur\n");
 
-        printf("%s : %s\n", courrier.name, courrier.message);
+        printf("[%s]> : %s\n", courrier.name, courrier.message);
     }
 }

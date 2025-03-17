@@ -17,7 +17,6 @@ void * traitement_rcv(void *arg)
     {
 
         int nb_datas = recv(client.socket_fd, &colis, sizeof(t_message), 0); perror("rcv"); // *fd pour accéder à la valeur pointée
-        printf("%s: %s \n", colis.name, colis.message);
 
             
             if(nb_datas == -1)
@@ -42,7 +41,9 @@ void * traitement_rcv(void *arg)
             printf("SEND ✅\n");
             send(users[i].socket_fd, &colis, sizeof(t_message), 0); perror("send");
         }
-        printf("%s: %s \n", colis.name, colis.message);
+        
+        printf("[%s]> %s \n", colis.name, colis.message);
+
         printf("compteur de clients : %d\n", next_client_index);
     }
 }
